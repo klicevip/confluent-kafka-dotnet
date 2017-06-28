@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Authors>Andreas Heider;Confluent Inc</Authors>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <AssemblyName>AdvancedConsumer</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>AdvancedConsumer</PackageId>
+    <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Confluent.Kafka\Confluent.Kafka.csproj" />
+  </ItemGroup>
+
+</Project>

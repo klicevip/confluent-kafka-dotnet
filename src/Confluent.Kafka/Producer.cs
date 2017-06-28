@@ -130,7 +130,7 @@ namespace Confluent.Kafka
         /// </param>
         private static void DeliveryReportCallbackImpl(IntPtr rk, IntPtr rkmessage, IntPtr opaque)
         {
-#if fx45
+#if NET45
             var msg = Util.Marshal.PtrToStructure<rd_kafka_message>(rkmessage);
 #else
             var msg = Marshal.PtrToStructure<rd_kafka_message>(rkmessage);

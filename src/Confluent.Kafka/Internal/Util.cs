@@ -16,7 +16,7 @@
 
 using System;
 using System.Text;
-#if fx45
+#if NET45
 using RunTimeMarshal = System.Runtime.InteropServices.Marshal;
 #endif
 
@@ -45,7 +45,7 @@ namespace Confluent.Kafka.Internal
                 return Encoding.UTF8.GetString(strBuffer);
             }
 
-#if fx45
+#if NET45
             public static int SizeOf<T>()
             {
                 return RunTimeMarshal.SizeOf(typeof(T));
