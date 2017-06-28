@@ -44,9 +44,14 @@ namespace Confluent.Kafka.Impl
             try {
                 var baseUri = new Uri(Assembly.GetExecutingAssembly().GetName().CodeBase);
                 var baseDirectory = Path.GetDirectoryName(baseUri.LocalPath);
+                
+                var floder = IntPtr.Size == 8 ? "x64" : "x86";
+                LoadLibrary(Path.Combine(baseDirectory, floder, "msvcr120.dll"));
+                LoadLibrary(Path.Combine(baseDirectory, floder, "zlib.dll"));
+                LoadLibrary(Path.Combine(baseDirectory, floder, "librdkafka.dll"));
 
-                LoadLibrary(Path.Combine(baseDirectory, is64 ? "x64/zlib.dll" : "x86/zlib.dll"));
-                LoadLibrary(Path.Combine(baseDirectory, is64 ? "x64/librdkafka.dll" : "x86/librdkafka.dll"));
+                //LoadLibrary(Path.Combine(baseDirectory, is64 ? "x64/zlib.dll" : "x86/zlib.dll"));
+                //LoadLibrary(Path.Combine(baseDirectory, is64 ? "x64/librdkafka.dll" : "x86/librdkafka.dll"));
             }
             catch (Exception) { }
 #endif
