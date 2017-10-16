@@ -23,7 +23,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using Confluent.Kafka.Internal;
 using System.Threading.Tasks;
-#if fx45
+#if NET45
 using Marshal = Confluent.Kafka.Internal.Util.Marshal;
 #endif
 

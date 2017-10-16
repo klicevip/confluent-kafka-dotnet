@@ -10,7 +10,6 @@ obj/
 todo.txt
 .cache
 src/Confluent.Kafka/runtimes
-Properties
 packages/
 doc/api/
 doc/_site/

@@ -21,7 +21,7 @@ using System.IO;
 using System.Text;
 using System.Runtime.InteropServices;
 using Confluent.Kafka.Internal;
-#if NET451 || fx45
+#if NET451 || NET45
 using System.Reflection;
 #endif
 
@@ -32,21 +32,26 @@ namespace Confluent.Kafka.Impl
     {
         const long minVersion = 0x000901ff;
 
-#if NET451 || fx45
+#if NET451 || NET45
         [DllImport("kernel32", SetLastError = true)]
         private static extern IntPtr LoadLibrary(string lpFileName);
 #endif
 
         static LibRdKafka()
         {
-#if NET451 || fx45
+#if NET451 || NET45
             var is64 = IntPtr.Size == 8;
             try {
                 var baseUri = new Uri(Assembly.GetExecutingAssembly().GetName().CodeBase);
                 var baseDirectory = Path.GetDirectoryName(baseUri.LocalPath);
+                
+                var floder = IntPtr.Size == 8 ? "x64" : "x86";
+                LoadLibrary(Path.Combine(baseDirectory, floder, "msvcr120.dll"));
+                LoadLibrary(Path.Combine(baseDirectory, floder, "zlib.dll"));
+                LoadLibrary(Path.Combine(baseDirectory, floder, "librdkafka.dll"));
 
-                LoadLibrary(Path.Combine(baseDirectory, is64 ? "x64/zlib.dll" : "x86/zlib.dll"));
-                LoadLibrary(Path.Combine(baseDirectory, is64 ? "x64/librdkafka.dll" : "x86/librdkafka.dll"));
+                //LoadLibrary(Path.Combine(baseDirectory, is64 ? "x64/zlib.dll" : "x86/zlib.dll"));
+                //LoadLibrary(Path.Combine(baseDirectory, is64 ? "x64/librdkafka.dll" : "x86/librdkafka.dll"));
             }
             catch (Exception) { }
 #endif

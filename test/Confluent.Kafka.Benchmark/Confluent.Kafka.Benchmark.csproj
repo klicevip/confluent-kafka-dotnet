@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <DebugType>portable</DebugType>
+    <AssemblyName>Confluent.Kafka.Benchmark</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>Confluent.Kafka.Benchmark</PackageId>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50;portable-net45+win8</PackageTargetFallback>
+    <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Confluent.Kafka\Confluent.Kafka.csproj" />
+  </ItemGroup>
+
+</Project>
